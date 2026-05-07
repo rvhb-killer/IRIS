@@ -169,3 +169,4 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(startAnimation, 150);
   });
 });
+
