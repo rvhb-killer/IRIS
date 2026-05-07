@@ -3644,7 +3644,7 @@ details[open] .ct-faq__q     { color: var(--ct-blue); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal]         { opacity: 1; transform: none; transition: none; }
+  [hidden]         { opacity: 1; transform: none; transition: none; }
   .ct-response-dot      { animation: none; }
   .ct-form__success--visible { animation: none; }
   .ct-faq__a            { animation: none; }
@@ -3687,7 +3687,7 @@ details[open] .ct-faq__q     { color: var(--ct-blue); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  [show] { opacity: 1; transform: none; transition: none; }
   .ft-scan-ring,
   .ft-signal,
   .ft-activity-item { animation: none; }
