@@ -1116,23 +1116,6 @@ a:hover {
    SCROLL REVEAL  (syncs met main.js)
    ══════════════════════════════════════════════════════════════ */
 
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(44px);
-  transition:
-    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-[data-reveal="fade"]  { transform: translateY(0); }
-[data-reveal="left"]  { transform: translateX(-44px); }
-[data-reveal="right"] { transform: translateX(44px); }
-[data-reveal="scale"] { transform: scale(0.94); }
-
-[data-reveal].is-visible {
-  opacity: 1;
-  transform: translate(0) scale(1);
-}
 
 
 /* ══════════════════════════════════════════════════════════════
@@ -1420,21 +1403,7 @@ a:hover {
 
 /* ─── Scroll reveal (syncs met main.js) ──────────────────────── */
 
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(40px);
-  transition:
-    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-}
 
-[data-reveal="left"]  { transform: translateX(-40px); }
-[data-reveal="right"] { transform: translateX(40px); }
-
-[data-reveal].is-visible {
-  opacity: 1;
-  transform: translate(0);
-}
 
 /* ─── Responsive ──────────────────────────────────────────────── */
 
@@ -2374,23 +2343,6 @@ from {
 /* ══════════════════════════════════════════════════════════════
    SCROLL REVEAL
    ══════════════════════════════════════════════════════════════ */
-
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(44px);
-  transition: opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1);
-}
-
-[data-reveal="fade"]  { transform: translateY(0); }
-[data-reveal="left"]  { transform: translateX(-44px); }
-[data-reveal="right"] { transform: translateX(44px); }
-[data-reveal="scale"] { transform: scale(0.94); opacity: 0; }
-
-[data-reveal].is-visible {
-  opacity: 1;
-  transform: translate(0) scale(1);
-}
-
 
 
 /* ══════════════════════════════════════════════════════════════
@@ -3604,20 +3556,7 @@ details[open] .ct-faq__q     { color: var(--ct-blue); }
 /* ══════════════════════════════════════════════════════════════
    SCROLL REVEAL
    ══════════════════════════════════════════════════════════════ */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(44px);
-  transition: opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1);
-}
-[data-reveal="fade"]  { transform: translateY(0); }
-[data-reveal="left"]  { transform: translateX(-44px); }
-[data-reveal="right"] { transform: translateX(44px); }
-[data-reveal="scale"] { transform: scale(0.94); opacity: 0; }
 
-[data-reveal].is-visible {
-  opacity: 1;
-  transform: translate(0) scale(1);
-}
 
 
 /* ══════════════════════════════════════════════════════════════
