@@ -25,10 +25,6 @@
   --empty: transparent;
 }
 
-.linear-gradient {
-  Color: linear-gradient(to right, #0c8de9, #83d3fc);
-}
-
 *, :before, :after {
     box-sizing: border-box;
     border-width: 0;
@@ -613,7 +609,7 @@ a:hover {
   --ab-bg:           #f0f4f9;
   --ab-dark:         #0f1623;
   --ab-dark-2:       #141e2e;
-  --ab-blue:         #3b82f6;
+  --ab-blue:         linear-gradient(to right, #0c8de9, #83d3fc);
   --ab-blue-dim:     rgba(59,130,246,0.12);
   --ab-text:         #0f1623;
   --ab-muted:        #6b7280;
