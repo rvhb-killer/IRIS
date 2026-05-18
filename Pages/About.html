@@ -125,21 +125,174 @@
 	    <div class="ab-container ab-origin__grid">
 
 	      <div class="ab-origin__visual" data-reveal="left" aria-hidden="true">
-	        <div class="ab-origin__badge">
-	          <span class="ab-origin__badge-logo">TL</span>
-	          <div class="ab-origin__badge-ring ab-origin__badge-ring--1"></div>
-	          <div class="ab-origin__badge-ring ab-origin__badge-ring--2"></div>
-	        </div>
-	        <div class="ab-origin__connector">
-	          <svg viewBox="0 0 2 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-	            <line x1="1" y1="0" x2="1" y2="120" stroke="url(#lineGrad)" stroke-width="1.5" stroke-dasharray="4 4"/>
-	            <defs>
-	              <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
-	                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.8"/>
-	                <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
-	              </linearGradient>
-	            </defs>
-	          </svg>
+	        
+				<style>
+				  body { margin: 0; background: #0d1b2a; }
+				  .scene { display: flex; align-items: center; justify-content: center; min-height: 600px; background: #0d1b2a; position: relative; overflow: hidden; }
+				  canvas { display: block; }
+				</style>
+				<h2 class="sr-only">Animatie: IR wordt geboren uit TL — een kleinere cirkel groeit uit een grote pulserende cirkel</h2>
+				<div class="scene">
+				  <canvas id="c" width="400" height="600"></canvas>
+				</div>
+				<script>
+				const canvas = document.getElementById('c');
+				const ctx = canvas.getContext('2d');
+				const W = 400, H = 600;
+				
+				let t = 0;
+				
+				function easeInOut(x) { return x < 0.5 ? 2*x*x : 1-Math.pow(-2*x+2,2)/2; }
+				function easeOut(x) { return 1 - Math.pow(1 - x, 3); }
+				
+				function drawCircle(x, y, r, strokeColor, fillColor, lineWidth, alpha=1) {
+				  ctx.save();
+				  ctx.globalAlpha = alpha;
+				  ctx.beginPath();
+				  ctx.arc(x, y, r, 0, Math.PI * 2);
+				  if (fillColor) { ctx.fillStyle = fillColor; ctx.fill(); }
+				  ctx.strokeStyle = strokeColor;
+				  ctx.lineWidth = lineWidth;
+				  ctx.stroke();
+				  ctx.restore();
+				}
+				
+				function drawLabel(x, y, text, alpha, color='#c5cdd8') {
+				  ctx.save();
+				  ctx.globalAlpha = alpha;
+				  ctx.fillStyle = color;
+				  ctx.font = '600 20px system-ui, sans-serif';
+				  ctx.textAlign = 'center';
+				  ctx.textBaseline = 'middle';
+				  ctx.fillText(text, x, y);
+				  ctx.restore();
+				}
+				
+				function loop() {
+				  ctx.clearRect(0, 0, W, H);
+				  t += 0.008;
+				
+				  const cycle = t % (Math.PI * 4);
+				  const norm = cycle / (Math.PI * 4); // 0..1 per full cycle
+				
+				  const TLx = W / 2;
+				  const TLy = 210;
+				  const TLr = 85;
+				
+				  // Phase 0..0.3: TL pulseert, rings
+				  // Phase 0.3..0.6: IR begint als puntje in TL en groeit naar buiten
+				  // Phase 0.6..0.85: IR zweeft omlaag naar eigen plek
+				  // Phase 0.85..1.0: stabiele toestand, beide aanwezig
+				
+				  const phase1End = 0.30;
+				  const phase2End = 0.62;
+				  const phase3End = 0.85;
+				
+				  // Puls factor for TL
+				  const pulse = 0.5 + 0.5 * Math.sin(t * 3.5);
+				
+				  // Ring 1 & 2 around TL (altijd zichtbaar, gedempt in latere fases)
+				  let ringAlpha = norm < phase3End ? 0.18 + 0.12 * pulse : 0.18;
+				  drawCircle(TLx, TLy, TLr + 40, '#3a6aad', null, 1, ringAlpha);
+				  drawCircle(TLx, TLy, TLr + 72, '#3a6aad', null, 0.7, ringAlpha * 0.5);
+				
+				  // TL cirkel
+				  let TLAlpha = 1.0;
+				  // in phase 2, TL dimmt licht als energie wegvloeit
+				  if (norm >= phase1End && norm < phase2End) {
+				    TLAlpha = 1.0 - 0.2 * easeInOut((norm - phase1End) / (phase2End - phase1End));
+				  }
+				  // TL border glow tijdens puls
+				  const glowR = TLr + 2 * pulse;
+				  drawCircle(TLx, TLy, glowR, `rgba(58,106,173,${0.4 + 0.3 * pulse})`, null, 2.5, TLAlpha);
+				  drawCircle(TLx, TLy, TLr, '#1c2f47', '#1c2f47', 2, TLAlpha);
+				  drawLabel(TLx, TLy, 'TL', TLAlpha);
+				
+				  // Energie deeltjes die van TL naar IR stromen (phase1End..phase2End)
+				  if (norm >= phase1End && norm < phase2End) {
+				    const phaseP = (norm - phase1End) / (phase2End - phase1End);
+				    for (let i = 0; i < 8; i++) {
+				      const offset = i / 8;
+				      const progress = (phaseP + offset) % 1;
+				      const angle = (i / 8) * Math.PI * 2 + t * 2;
+				      const spread = easeOut(progress);
+				      const px = TLx + Math.cos(angle) * TLr * 1.1 * spread;
+				      const py = TLy + Math.sin(angle) * TLr * 1.1 * spread + spread * 60 * progress;
+				      const palpha = (1 - progress) * 0.7;
+				      const pr = 3 * (1 - progress * 0.5);
+				      ctx.save();
+				      ctx.globalAlpha = palpha;
+				      ctx.beginPath();
+				      ctx.arc(px, py, pr, 0, Math.PI * 2);
+				      ctx.fillStyle = '#4a8fd4';
+				      ctx.fill();
+				      ctx.restore();
+				    }
+				  }
+				
+				  // IR cirkel
+				  if (norm >= phase1End) {
+				    const phaseP = Math.min((norm - phase1End) / (phase2End - phase1End), 1);
+				
+				    // doelpos IR
+				    const IRx = W / 2;
+				    const IRy_final = 440;
+				    const IRr_final = 65;
+				
+				    // geboorte: IR groeit uit het centrum van TL
+				    let IRx_cur, IRy_cur, IRr_cur, IRAlpha;
+				
+				    if (norm < phase2End) {
+				      // groeifase: IR verschijnt klein in TL, groeit en drijft omlaag
+				      const grow = easeInOut(phaseP);
+				      IRr_cur = IRr_final * grow;
+				      IRx_cur = TLx + (IRx - TLx) * easeOut(phaseP);
+				      IRy_cur = TLy + (IRy_final - TLy) * easeInOut(phaseP);
+				      IRAlpha = grow;
+				    } else if (norm < phase3End) {
+				      // stabilisatiefase
+				      const stabP = (norm - phase2End) / (phase3End - phase2End);
+				      IRr_cur = IRr_final;
+				      IRx_cur = IRx;
+				      IRy_cur = IRy_final + (1 - easeOut(stabP)) * 10 * Math.sin(stabP * Math.PI * 4);
+				      IRAlpha = 1.0;
+				    } else {
+				      IRr_cur = IRr_final;
+				      IRx_cur = IRx;
+				      IRy_cur = IRy_final;
+				      IRAlpha = 1.0;
+				    }
+				
+				    // IR border pulse (eigen toon, blauwer)
+				    const irPulse = 0.5 + 0.5 * Math.sin(t * 2.8 + 1.5);
+				    drawCircle(IRx_cur, IRy_cur, IRr_cur + 1.5 * irPulse, `rgba(70,130,220,${0.35 + 0.25 * irPulse})`, null, 2.5, IRAlpha);
+				    drawCircle(IRx_cur, IRy_cur, IRr_cur, '#1a2e45', '#1a2e45', 2.5, IRAlpha);
+				    drawLabel(IRx_cur, IRy_cur, 'IR', IRAlpha, '#4a8fd4');
+				
+				    // verbindingslijn TL -> IR (fade out als IR op plek staat)
+				    if (norm < phase3End) {
+				      const lineAlpha = norm < phase2End
+				        ? easeInOut((norm - phase1End) / (phase2End - phase1End)) * 0.35
+				        : (1 - (norm - phase2End) / (phase3End - phase2End)) * 0.35;
+				      ctx.save();
+				      ctx.globalAlpha = lineAlpha;
+				      ctx.beginPath();
+				      ctx.moveTo(TLx, TLy + TLr);
+				      ctx.lineTo(IRx_cur, IRy_cur - IRr_cur);
+				      ctx.strokeStyle = '#4a8fd4';
+				      ctx.lineWidth = 1.5;
+				      ctx.setLineDash([5, 6]);
+				      ctx.stroke();
+				      ctx.restore();
+				    }
+				  }
+				
+				  requestAnimationFrame(loop);
+				}
+				
+				loop();
+				</script>
+
 	        </div>
 	        <div class="ab-origin__badge ab-origin__badge--iris">
 	          <span class="ab-origin__badge-logo ab-origin__badge-logo--iris">IR</span>
