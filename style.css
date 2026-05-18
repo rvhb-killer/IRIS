@@ -653,7 +653,6 @@ a:hover {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ab-blue);
   margin-bottom: 16px;
 }
 
@@ -666,18 +665,17 @@ a:hover {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color:  linear-gradient(to right, #0c8de9, #83d3fc);;
   margin-bottom: 20px;
 }
 
-.ab-kicker--light {  linear-gradient(to right, #0c8de9, #83d3fc); }
+.ab-kicker--light {  ; }
 
 .ab-highlight {
-  color: var(--ab-blue);
+;
 }
 
 .ab-highlight--blue {
-  background:  linear-gradient(to right, #0c8de9, #83d3fc);;
+  background:  var(--ab-blue);;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
