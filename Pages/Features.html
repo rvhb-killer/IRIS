@@ -109,17 +109,108 @@
 
 	      <div class="ft-block__visual" data-reveal="left">
 	        <div class="ft-art ft-art--scanning">
-	          <div class="ft-scan-ring ft-scan-ring--1"></div>
-	          <div class="ft-scan-ring ft-scan-ring--2"></div>
-	          <div class="ft-scan-ring ft-scan-ring--3"></div>
-	          <div class="ft-scan-center"><span>AI</span></div>
-	          <div class="ft-signal ft-signal--1">📰 Nieuws</div>
-	          <div class="ft-signal ft-signal--2">📊 Rapport</div>
-	          <div class="ft-signal ft-signal--3">🔬 Research</div>
-	          <div class="ft-signal ft-signal--4">📡 Feed</div>
-	          <!-- Regio badges -->
-	        </div>
-	      </div>
+				<style>
+				.radar-wrap {
+				  display: flex; align-items: center; justify-content: center;
+				  padding: 2rem 0; min-height: 420px;
+				}
+				.radar {
+				  position: relative; width: 380px; height: 380px;
+				}
+				.ring {
+				  position: absolute; border-radius: 50%;
+				  border: 1.5px solid rgba(59,130,246,0.25);
+				  top: 50%; left: 50%; transform: translate(-50%,-50%);
+				}
+				.ring-1 { width: 120px; height: 120px; }
+				.ring-2 { width: 220px; height: 220px; }
+				.ring-3 { width: 340px; height: 340px; }
+				.ai-center {
+				  position: absolute; top: 50%; left: 50%;
+				  transform: translate(-50%,-50%);
+				  width: 64px; height: 64px; border-radius: 50%;
+				  background: #3b82f6;
+				  display: flex; align-items: center; justify-content: center;
+				  font-weight: 600; font-size: 15px; color: #fff;
+				  z-index: 10;
+				  box-shadow: 0 0 0 8px rgba(59,130,246,0.15), 0 0 0 16px rgba(59,130,246,0.07);
+				}
+				.orbit {
+				  position: absolute; top: 50%; left: 50%;
+				  transform-origin: 0 0;
+				  pointer-events: none;
+				}
+				.orbit-inner { position: absolute; transform: translate(-50%, -50%); }
+				.signal {
+				  background: #1e293b;
+				  border: 1px solid rgba(59,130,246,0.3);
+				  border-radius: 8px;
+				  padding: 6px 12px;
+				  font-size: 13px;
+				  color: #94a3b8;
+				  white-space: nowrap;
+				  display: flex; align-items: center; gap: 6px;
+				  pointer-events: none;
+				}
+				.signal i { color: #3b82f6; font-size: 15px; }
+				</style>
+				
+				<div class="radar-wrap">
+				  <div class="radar" id="radar">
+				    <div class="ring ring-1"></div>
+				    <div class="ring ring-2"></div>
+				    <div class="ring ring-3"></div>
+				    <div class="ai-center">AI</div>
+				
+				    <div class="orbit" id="o1">
+				      <div class="orbit-inner">
+				        <div class="signal"><i class="ti ti-news" aria-hidden="true"></i> Nieuws</div>
+				      </div>
+				    </div>
+				    <div class="orbit" id="o2">
+				      <div class="orbit-inner">
+				        <div class="signal"><i class="ti ti-chart-bar" aria-hidden="true"></i> Rapport</div>
+				      </div>
+				    </div>
+				    <div class="orbit" id="o3">
+				      <div class="orbit-inner">
+				        <div class="signal"><i class="ti ti-microscope" aria-hidden="true"></i> Research</div>
+				      </div>
+				    </div>
+				    <div class="orbit" id="o4">
+				      <div class="orbit-inner">
+				        <div class="signal"><i class="ti ti-rss" aria-hidden="true"></i> Feed</div>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				
+				<script>
+				const orbits = [
+				  { id: 'o1', radius: 155, speed: 0.4,  angle: 225 },
+				  { id: 'o2', radius: 155, speed: 0.4,  angle: 45  },
+				  { id: 'o3', radius: 155, speed: 0.4,  angle: 135 },
+				  { id: 'o4', radius: 155, speed: 0.4,  angle: 315 },
+				];
+				
+				let last = null;
+				function animate(ts) {
+				  if (!last) last = ts;
+				  const dt = (ts - last) / 1000;
+				  last = ts;
+				  orbits.forEach(o => {
+				    o.angle += o.speed * dt * 30;
+				    const rad = o.angle * Math.PI / 180;
+				    const x = Math.cos(rad) * o.radius;
+				    const y = Math.sin(rad) * o.radius;
+				    const el = document.getElementById(o.id);
+				    el.style.transform = `translate(${x}px, ${y}px)`;
+				  });
+				  requestAnimationFrame(animate);
+				}
+				requestAnimationFrame(animate);
+				</script>
+			</div>
 
 	      <div class="ft-block__body" data-reveal="right">
 	        <p class="ft-kicker ft-kicker--blue">01 — AI Scanning</p>
