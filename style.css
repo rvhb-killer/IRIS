@@ -25,6 +25,10 @@
   --empty: transparent;
 }
 
+.linear-gradient {
+  Color: linear-gradient(to right, #0c8de9, #83d3fc);
+}
+
 *, :before, :after {
     box-sizing: border-box;
     border-width: 0;
