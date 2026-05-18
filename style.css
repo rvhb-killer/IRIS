@@ -3118,7 +3118,7 @@ from {
   transition: color 0.2s;
 }
 
-a.ct-contact-item__value:hover { color: var(--ct-blue); }
+a.ct-contact-item__value:hover { color: var(--ct-blue);}
 
 /* Response badge */
 .ct-response-badge {
