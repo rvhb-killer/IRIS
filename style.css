@@ -666,18 +666,18 @@ a:hover {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ab-blue);
+  color:  linear-gradient(to right, #0c8de9, #83d3fc);;
   margin-bottom: 20px;
 }
 
-.ab-kicker--light { color: rgba(255,255,255,0.5); }
+.ab-kicker--light {  linear-gradient(to right, #0c8de9, #83d3fc); }
 
 .ab-highlight {
   color: var(--ab-blue);
 }
 
 .ab-highlight--blue {
-  background: linear-gradient(90deg, #60a5fa, #3b82f6);
+  background:  linear-gradient(to right, #0c8de9, #83d3fc);;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -718,7 +718,7 @@ a:hover {
 }
 
 .ab-hero .ab-eyebrow {
-  color: rgba(59,130,246,0.85);
+  color:  linear-gradient(to right, #0c8de9, #83d3fc););
 }
 
 .ab-hero__title {
