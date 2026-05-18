@@ -715,9 +715,6 @@ a:hover {
   );
 }
 
-.ab-hero .ab-eyebrow {
-  color:  linear-gradient(to right, #0c8de9, #83d3fc););
-}
 
 .ab-hero__title {
   font-family: var(--ab-font-display);
