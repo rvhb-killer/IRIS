@@ -875,7 +875,7 @@ a:hover {
 .ab-origin__grid {
   display: grid;
   grid-template-columns: 220px 1fr;
-  gap: 72px;
+  gap: 150px;
   align-items: center;
 }
 
