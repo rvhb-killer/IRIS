@@ -2593,15 +2593,33 @@ from {
 }
 
 /* ══════════════════════════════════════════════════════════════
-   chart
+   chart — radar/scan stijl
    ══════════════════════════════════════════════════════════════ */
+
+:root {
+  --bg:        #0d1520;
+  --bg-card:   #111c2d;
+  --grid:      rgba(59, 130, 246, 0.08);
+  --line:      rgba(59, 130, 246, 0.7);
+  --line-dim:  rgba(59, 130, 246, 0.25);
+  --text:      #e2e8f0;
+  --text-muted:#64748b;
+  --iris:      #facc15;
+  --iris-dark: #eab308;
+  --border:    rgba(59, 130, 246, 0.2);
+  --glow:      rgba(59, 130, 246, 0.12);
+}
 
 .chart-wrapper {
   width: min(61.25rem, 94vw);
   padding: clamp(1rem, 3vw, 2rem);
   border-radius: clamp(1rem, 2vw, 1.5rem);
-  background: white;
-  box-shadow: 0 1.5rem 5rem rgba(0, 0, 0, 0.12);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 0 0 1px var(--line-dim),
+    0 1.5rem 5rem rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255,255,255,0.04);
   display: block;
   margin: auto;
 }
@@ -2619,29 +2637,34 @@ from {
   font-size: clamp(1.5rem, 4vw, 2.625rem);
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  color: var(--text);
+  font-weight: 500;
 }
 
 .toggle-button {
-  border: 0;
+  border: 1px solid var(--border);
   border-radius: 999rem;
   padding: clamp(0.75rem, 1.6vw, 0.875rem) clamp(1rem, 2.4vw, 1.375rem);
   font-size: clamp(0.875rem, 1.6vw, 0.9375rem);
-  font-weight: 700;
-  color: white;
-  background: linear-gradient(135deg, #111, #444);
+  font-weight: 600;
+  color: var(--text-muted);
+  background: rgba(59, 130, 246, 0.06);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   white-space: nowrap;
 }
 
 .toggle-button:hover {
   transform: translateY(-0.125rem);
-  box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.22);
+  color: var(--text);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 1.25rem rgba(59, 130, 246, 0.15);
 }
 
 .toggle-button.is-active {
-  background: linear-gradient(135deg, var(--iris-dark), var(--iris));
-  color: #111;
+  background: rgba(234, 179, 8, 0.12);
+  border-color: rgba(234, 179, 8, 0.4);
+  color: var(--iris);
 }
 
 .chart {
@@ -2656,6 +2679,7 @@ from {
     linear-gradient(90deg, var(--grid) 0.0625rem, transparent 0.0625rem),
     var(--bg);
   background-size: clamp(0.5rem, 1.4vw, 0.875rem) clamp(0.5rem, 1.4vw, 0.875rem);
+  border: 1px solid var(--line-dim);
 }
 
 .chart-inner {
@@ -2669,9 +2693,10 @@ from {
   left: 50%;
   transform: translateX(-20%);
   font-size: clamp(1.25rem, 3vw, 2.125rem);
-  font-weight: 900;
+  font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  color: var(--text);
 }
 
 .axis-y {
@@ -2679,8 +2704,9 @@ from {
   left: 11.2%;
   top: 11.3%;
   bottom: 38.7%;
-  width: clamp(0.25rem, 0.6vw, 0.375rem);
+  width: clamp(0.15rem, 0.35vw, 0.2rem);
   background: var(--line);
+  box-shadow: 0 0 6px var(--line);
 }
 
 .axis-y::before {
@@ -2692,6 +2718,7 @@ from {
   border-left: clamp(0.5rem, 1.3vw, 0.8125rem) solid transparent;
   border-right: clamp(0.5rem, 1.3vw, 0.8125rem) solid transparent;
   border-bottom: clamp(0.75rem, 2vw, 1.25rem) solid var(--line);
+  filter: drop-shadow(0 0 4px var(--line));
 }
 
 .axis-origin {
@@ -2700,10 +2727,11 @@ from {
   top: 54.8%;
   width: clamp(1.25rem, 2.8vw, 1.75rem);
   aspect-ratio: 1;
-  border: clamp(0.25rem, 0.8vw, 0.4375rem) solid var(--line);
+  border: clamp(0.2rem, 0.5vw, 0.3rem) solid var(--line);
   border-radius: 50%;
   background: var(--bg);
   z-index: 3;
+  box-shadow: 0 0 8px var(--line), inset 0 0 4px rgba(59,130,246,0.2);
 }
 
 .axis-x {
@@ -2711,10 +2739,11 @@ from {
   left: 12%;
   top: 56.5%;
   width: 33.7%;
-  height: clamp(0.25rem, 0.6vw, 0.375rem);
+  height: clamp(0.15rem, 0.35vw, 0.2rem);
   background: var(--line);
   transform: rotate(46deg);
   transform-origin: left center;
+  box-shadow: 0 0 6px var(--line);
 }
 
 .axis-x::after {
@@ -2726,6 +2755,7 @@ from {
   border-top: clamp(0.5rem, 1.3vw, 0.8125rem) solid transparent;
   border-bottom: clamp(0.5rem, 1.3vw, 0.8125rem) solid transparent;
   border-left: clamp(0.75rem, 2vw, 1.25rem) solid var(--line);
+  filter: drop-shadow(0 0 4px var(--line));
 }
 
 .y-label {
@@ -2736,7 +2766,8 @@ from {
   text-align: right;
   font-size: clamp(0.85rem, 2.4vw, 1.5rem);
   line-height: 1.15;
-  color: #555;
+  color: var(--text-muted);
+  font-weight: 400;
 }
 
 .x-label {
@@ -2744,7 +2775,8 @@ from {
   left: 10%;
   bottom: 9.4%;
   font-size: clamp(1rem, 2.5vw, 1.5625rem);
-  color: #555;
+  color: var(--text-muted);
+  font-weight: 400;
 }
 
 .bars {
@@ -2759,51 +2791,45 @@ from {
   text-align: center;
 }
 
-.bar-group.today {
-  left: 16.8%;
-}
-
-.bar-group.tomorrow {
-  left: 43.4%;
-  width: 22.4%;
-}
-
-.bar-group.future {
-  left: 69.4%;
-  width: 22.4%;
-}
+.bar-group.today    { left: 16.8%; }
+.bar-group.tomorrow { left: 43.4%; width: 22.4%; }
+.bar-group.future   { left: 69.4%; width: 22.4%; }
 
 .bar-label {
   margin-bottom: clamp(0.25rem, 0.8vw, 0.5rem);
   font-size: clamp(1rem, 3vw, 1.875rem);
   line-height: 1;
-  font-weight: 900;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.02em;
 }
 
 .bar-value {
   margin-bottom: clamp(0.25rem, 0.8vw, 0.5rem);
   font-size: clamp(0.875rem, 2vw, 1.25rem);
-  font-weight: 800;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.bar-box,
+.bar-box-2 {
+  position: relative;
+  border: 1px solid var(--border);
+  background: rgba(59, 130, 246, 0.04);
+  overflow: hidden;
+  border-radius: 2px;
 }
 
 .bar-box {
-  position: relative;
   height: clamp(10rem, 25.5vw, 15.625rem);
-  border: clamp(0.15rem, 0.45vw, 0.1rem) solid #222;
-  background: rgba(255, 255, 255, 0.15);
-  overflow: hidden;
 }
 
 .bar-box-2 {
-  position: relative;
   height: clamp(8rem, 20.4vw, 12.5rem);
-  border: clamp(0.15rem, 0.45vw, 0.25rem) solid #222;
-  background: rgba(255, 255, 255, 0.15);
-  overflow: hidden;
 }
 
 .bar-group.tomorrow .bar-box,
-.bar-group.future .bar-box {
+.bar-group.future   .bar-box {
   height: clamp(3.75rem, 7.65vw, 4.6875rem);
 }
 
@@ -2812,30 +2838,22 @@ from {
   left: 0;
   bottom: 0;
   width: 100%;
-  background: yellow;
+  background: var(--iris);
   transition: height 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 -4px 20px rgba(234, 179, 8, 0.25);
 }
 
-.bar-fill.today-fill {
-  height: 100%;
-  color: yellow;
-}
-
-.bar-fill.tomorrow-fill {
-  height: 24%;
-}
-
-.bar-fill.future-fill {
-  height: 0%;
-}
+.bar-fill.today-fill    { height: 100%; }
+.bar-fill.tomorrow-fill { height: 24%; }
+.bar-fill.future-fill   { height: 0%; }
 
 .with-iris .bar-fill.future-fill {
   height: 100%;
 }
 
 .with-iris .future .bar-box {
-  border-color: yellow;
-  box-shadow: 0 0 0 clamp(0.15rem, 0.45vw, 0.25rem) rgba(199, 163, 52, 0.18);
+  border-color: rgba(234, 179, 8, 0.35);
+  box-shadow: 0 0 16px rgba(234, 179, 8, 0.1);
 }
 
 .with-iris .future .bar-value {
@@ -2845,8 +2863,8 @@ from {
 .bar-bottom {
   margin-top: clamp(0.25rem, 0.8vw, 0.5rem);
   font-size: clamp(0.875rem, 2vw, 1.25rem);
-  color: #777;
-  font-weight: 600;
+  color: var(--text-muted);
+  font-weight: 500;
 }
 
 .iris-badge {
@@ -2855,10 +2873,11 @@ from {
   bottom: 5.2%;
   padding: clamp(0.75rem, 1.6vw, 0.875rem) clamp(1rem, 1.9vw, 1.125rem);
   border-radius: 999rem;
-  background: rgba(17, 17, 17, 0.88);
-  color: white;
+  background: rgba(234, 179, 8, 0.12);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  color: var(--iris);
   font-size: clamp(0.8rem, 1.5vw, 1rem);
-  font-weight: 800;
+  font-weight: 600;
   opacity: 0;
   transform: translateY(0.875rem);
   transition: opacity 400ms ease, transform 400ms ease;
@@ -2872,8 +2891,8 @@ from {
 .status {
   margin-top: clamp(1rem, 2vw, 1.125rem);
   font-size: clamp(0.95rem, 1.7vw, 1.0625rem);
-  font-weight: 700;
-  color: #333;
+  font-weight: 500;
+  color: var(--text-muted);
 }
 
 .status span {
@@ -2906,7 +2925,6 @@ from {
     left: 53.3%;
   }
 }
-
 /* ══════════════════════════════════════════════════════════════
    Contact
    ══════════════════════════════════════════════════════════════ */
