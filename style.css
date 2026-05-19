@@ -2763,132 +2763,150 @@ from {
   left: 16.8%;
 }
 
-.bar-group.tomorrow {Hier is de CSS herschreven in de donkere radar-stijl — dark navy achtergrond, blauwe accenten, subtiele borders en lichtere typografie:
-css.bar-group.future {
+.bar-group.tomorrow {
+  left: 43.4%;
+  width: 22.4%;
+}
+
+.bar-group.future {
   left: 69.4%;
   width: 22.4%;
 }
+
 .bar-label {
   margin-bottom: clamp(0.25rem, 0.8vw, 0.5rem);
   font-size: clamp(1rem, 3vw, 1.875rem);
   line-height: 1;
-  font-weight: 600;
-  color: #e2e8f0;
-  letter-spacing: 0.01em;
+  font-weight: 900;
 }
+
 .bar-value {
   margin-bottom: clamp(0.25rem, 0.8vw, 0.5rem);
   font-size: clamp(0.875rem, 2vw, 1.25rem);
-  font-weight: 500;
-  color: #3b82f6;
+  font-weight: 800;
 }
+
 .bar-box {
   position: relative;
   height: clamp(10rem, 25.5vw, 15.625rem);
-  border: 1px solid rgba(59, 130, 246, 0.25);
-  background: rgba(30, 41, 59, 0.6);
-  border-radius: 6px;
+  border: clamp(0.15rem, 0.45vw, 0.1rem) solid #222;
+  background: rgba(255, 255, 255, 0.15);
   overflow: hidden;
 }
+
 .bar-box-2 {
   position: relative;
   height: clamp(8rem, 20.4vw, 12.5rem);
-  border: 1px solid rgba(59, 130, 246, 0.25);
-  background: rgba(30, 41, 59, 0.6);
-  border-radius: 6px;
+  border: clamp(0.15rem, 0.45vw, 0.25rem) solid #222;
+  background: rgba(255, 255, 255, 0.15);
   overflow: hidden;
 }
+
 .bar-group.tomorrow .bar-box,
 .bar-group.future .bar-box {
   height: clamp(3.75rem, 7.65vw, 4.6875rem);
 }
+
 .bar-fill {
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  background: #3b82f6;
+  background: yellow;
   transition: height 900ms cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 .bar-fill.today-fill {
   height: 100%;
-  background: #3b82f6;
-  box-shadow: 0 0 24px rgba(59, 130, 246, 0.3);
+  color: yellow;
 }
+
 .bar-fill.tomorrow-fill {
   height: 24%;
-  background: rgba(59, 130, 246, 0.5);
 }
+
 .bar-fill.future-fill {
   height: 0%;
-  background: rgba(59, 130, 246, 0.25);
 }
+
 .with-iris .bar-fill.future-fill {
   height: 100%;
 }
+
 .with-iris .future .bar-box {
-  border-color: rgba(59, 130, 246, 0.6);
-  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.15);
+  border-color: yellow;
+  box-shadow: 0 0 0 clamp(0.15rem, 0.45vw, 0.25rem) rgba(199, 163, 52, 0.18);
 }
+
 .with-iris .future .bar-value {
-  color: #60a5fa;
+  color: var(--iris-dark);
 }
+
 .bar-bottom {
   margin-top: clamp(0.25rem, 0.8vw, 0.5rem);
   font-size: clamp(0.875rem, 2vw, 1.25rem);
-  color: #475569;
-  font-weight: 500;
+  color: #777;
+  font-weight: 600;
 }
+
 .iris-badge {
   position: absolute;
   right: 3.7%;
   bottom: 5.2%;
   padding: clamp(0.75rem, 1.6vw, 0.875rem) clamp(1rem, 1.9vw, 1.125rem);
   border-radius: 999rem;
-  background: rgba(59, 130, 246, 0.15);
-  border: 1px solid rgba(59, 130, 246, 0.35);
-  color: #93c5fd;
+  background: rgba(17, 17, 17, 0.88);
+  color: white;
   font-size: clamp(0.8rem, 1.5vw, 1rem);
-  font-weight: 600;
+  font-weight: 800;
   opacity: 0;
   transform: translateY(0.875rem);
   transition: opacity 400ms ease, transform 400ms ease;
 }
+
 .with-iris .iris-badge {
   opacity: 1;
   transform: translateY(0);
 }
+
 .status {
   margin-top: clamp(1rem, 2vw, 1.125rem);
   font-size: clamp(0.95rem, 1.7vw, 1.0625rem);
-  font-weight: 500;
-  color: #94a3b8;
+  font-weight: 700;
+  color: #333;
 }
+
 .status span {
-  color: #3b82f6;
+  color: var(--iris-dark);
 }
+
 @media (max-width: 47.5rem) {
   .chart-wrapper {
     padding: clamp(0.75rem, 4vw, 1.125rem);
   }
+
   .chart-header {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .chart {
     aspect-ratio: 9 / 7;
     min-height: 31rem;
     overflow-x: auto;
   }
+
   .chart-inner {
     position: relative;
     width: 56.25rem;
     height: 100%;
   }
+
   .chart-title {
     left: 53.3%;
   }
 }
+
 /* ══════════════════════════════════════════════════════════════
    Contact
    ══════════════════════════════════════════════════════════════ */
