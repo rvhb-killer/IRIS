@@ -2857,7 +2857,7 @@ from {
 }
 
 .with-iris .future .bar-value {
-  color: var(--iris-dark);
+  color: linear-gradient(to right, rgb(12, 141, 233), ;
 }
 
 .bar-bottom {
