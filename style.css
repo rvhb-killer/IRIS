@@ -2604,10 +2604,10 @@ from {
   --line-dim:  rgba(59, 130, 246, 0.25);
   --text:      #e2e8f0;
   --text-muted:#64748b;
-  --iris:      #facc15;
+  --iris:      rgba(59, 130, 246, 0.7);
   --iris-dark: #eab308;
   --border:    rgba(59, 130, 246, 0.2);
-  --glow:      rgba(59, 130, 246, 0.12);
+  --glow:      rgba(59, 130, 246, 0.25);
 }
 
 .chart-wrapper {
