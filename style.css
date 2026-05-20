@@ -3941,15 +3941,8 @@ from {
 .ft-quadrant__label {
   max-width: 150px;
   color: #f8fafc;
-  font-size: 20px;
   line-height: 1.12;
-  font-weight: 850;
   letter-spacing: -0.035em;
-}
-
-.ft-quadrant--bl .ft-quadrant__label,
-.ft-quadrant--tr .ft-quadrant__label {
-  color: rgba(226, 232, 240, 0.78);
 }
 
 /* Dots */
