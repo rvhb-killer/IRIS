@@ -1,0 +1,463 @@
+/* ═══════════════════════════════════════════════════════════════
+   IRIS – Contact page styles
+   Gebruik samen met styles/main.css + styles/scroll-effects.css
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Tokens ─────────────────────────────────────────────────── */
+:root {
+  --ct-bg:          #f0f4f9;
+  --ct-light:       #ffffff;
+  --ct-dark:        #0f1623;
+  --ct-dark-2:      #141e2e;
+  --ct-blue:        #3b82f6;
+  --ct-blue-soft:   rgba(59,130,246,0.10);
+  --ct-blue-glow:   rgba(59,130,246,0.22);
+  --ct-green:       #22c55e;
+  --ct-text:        #0f1623;
+  --ct-muted:       #6b7280;
+  --ct-muted-l:     rgba(255,255,255,0.55);
+  --ct-border:      rgba(0,0,0,0.08);
+  --ct-border-l:    rgba(255,255,255,0.10);
+  --ct-border-inp:  #d1d5db;
+  --ct-radius:      16px;
+  --ct-display:     'Sora', sans-serif;
+  --ct-body:        'DM Sans', sans-serif;
+  --ct-max:         1100px;
+  --ct-pad:         clamp(20px, 5vw, 48px);
+  --ct-gap:         clamp(64px, 9vw, 112px);
+}
+
+/* ─── Scope reset ────────────────────────────────────────────── */
+.contact-page *, .contact-page *::before, .contact-page *::after {
+  box-sizing: border-box;
+}
+.contact-page {
+  font-family: var(--ct-body);
+  background: var(--ct-bg);
+  color: var(--ct-text);
+}
+
+.ct-container {
+  width: 100%;
+  max-width: var(--ct-max);
+  margin: 0 auto;
+  padding: 0 var(--ct-pad);
+}
+
+/* ─── Shared helpers ─────────────────────────────────────────── */
+.ct-eyebrow {
+  font-family: var(--ct-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ct-blue);
+  margin-bottom: 14px;
+  display: block;
+}
+.ct-eyebrow--center { text-align: center; }
+
+.ct-blue-text { color: var(--ct-blue); }
+
+
+/* ══════════════════════════════════════════════════════════════
+   1. HERO
+   ══════════════════════════════════════════════════════════════ */
+.ct-hero {
+  position: relative;
+  background: var(--ct-dark);
+  overflow: hidden;
+  padding: clamp(80px, 12vw, 140px) 0 clamp(72px, 9vw, 108px);
+}
+
+.ct-hero__glow {
+  position: absolute;
+  top: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 640px; height: 360px;
+  background: radial-gradient(ellipse, rgba(59,130,246,0.18) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+.ct-hero__title {
+  font-family: var(--ct-display);
+  font-size: clamp(36px, 6vw, 68px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 24px;
+  max-width: 720px;
+}
+
+.ct-hero__title-dim {
+  color: rgba(255,255,255,0.38);
+  font-weight: 300;
+}
+
+.ct-hero__sub {
+  font-size: clamp(15px, 1.8vw, 18px);
+  line-height: 1.7;
+  color: var(--ct-muted-l);
+  max-width: 540px;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   2. MAIN GRID
+   ══════════════════════════════════════════════════════════════ */
+.ct-main {
+  padding: var(--ct-gap) 0;
+  background: var(--ct-bg);
+}
+
+.ct-main__grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: clamp(40px, 5vw, 72px);
+  align-items: start;
+}
+
+
+/* ── Info kolom ──────────────────────────────────────────────── */
+
+/* Demo card */
+.ct-demo-card {
+  background: var(--ct-dark);
+  border-radius: var(--ct-radius);
+  padding: 32px 28px;
+  border: 1.5px solid rgba(59,130,246,0.22);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.14);
+  margin-bottom: 28px;
+}
+
+.ct-demo-card__icon {
+  font-size: 28px;
+  margin-bottom: 14px;
+}
+
+.ct-demo-card h3 {
+  font-family: var(--ct-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.ct-demo-card p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ct-muted-l);
+  margin-bottom: 20px;
+}
+
+/* Contact items */
+.ct-contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.ct-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--ct-light);
+  border: 1.5px solid var(--ct-border);
+  border-radius: 12px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.ct-contact-item:hover {
+  box-shadow: 0 4px 20px rgba(59,130,246,0.1);
+  border-color: rgba(59,130,246,0.25);
+}
+
+.ct-contact-item__icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ct-contact-item__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ct-muted);
+  margin-bottom: 3px;
+  font-family: var(--ct-display);
+}
+
+.ct-contact-item__value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ct-text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a.ct-contact-item__value:hover { color: var(--ct-blue);}
+
+/* Response badge */
+.ct-response-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.25);
+  border-radius: 999px;
+  font-size: 13px;
+  color: #15803d;
+}
+
+.ct-response-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--ct-green);
+  box-shadow: 0 0 8px rgba(34,197,94,0.6);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(1.3); }
+}
+
+
+/* ── Formulier ───────────────────────────────────────────────── */
+.ct-form-wrap {
+  background: var(--ct-light);
+  border-radius: 24px;
+  padding: clamp(28px, 4vw, 44px);
+  border: 1.5px solid var(--ct-border);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  position: relative;
+}
+
+.ct-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.ct-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Field */
+.ct-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.ct-field label {
+  font-family: var(--ct-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ct-text);
+}
+
+.ct-required { color: var(--ct-blue); }
+
+.ct-field input,
+.ct-field textarea,
+.ct-field select {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--ct-bg);
+  border: 1.5px solid var(--ct-border-inp);
+  border-radius: 10px;
+  font-family: var(--ct-body);
+  font-size: 14px;
+  color: var(--ct-text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  appearance: none;
+}
+
+.ct-field input::placeholder,
+.ct-field textarea::placeholder {
+  color: #9ca3af;
+}
+
+.ct-field input:focus,
+.ct-field textarea:focus,
+.ct-field select:focus {
+  border-color: var(--ct-blue);
+  background: var(--ct-light);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+}
+
+.ct-field textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+/* Select wrapper */
+.ct-select-wrap {
+  position: relative;
+}
+
+.ct-select-wrap select { padding-right: 40px; cursor: pointer; }
+
+.ct-select-arrow {
+  position: absolute;
+  right: 14px; top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--ct-muted);
+}
+
+/* Checkbox */
+.ct-field--checkbox { flex-direction: row; align-items: flex-start; gap: 0; }
+
+.ct-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--ct-muted);
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.ct-checkbox-label input[type="checkbox"] { display: none; }
+
+.ct-checkbox-custom {
+  flex-shrink: 0;
+  width: 18px; height: 18px;
+  border: 2px solid var(--ct-border-inp);
+  border-radius: 5px;
+  background: var(--ct-bg);
+  transition: border-color 0.2s, background 0.2s;
+  position: relative;
+  margin-top: 1px;
+}
+
+.ct-checkbox-label input:checked + .ct-checkbox-custom {
+  background: var(--ct-blue);
+  border-color: var(--ct-blue);
+}
+
+.ct-checkbox-label input:checked + .ct-checkbox-custom::after {
+  content: '';
+  position: absolute;
+  left: 4px; top: 1px;
+  width: 5px; height: 9px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+.ct-link {
+  color: var(--ct-blue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Error state */
+.ct-field--error input,
+.ct-field--error textarea,
+.ct-field--error .ct-checkbox-custom {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.1) !important;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.ct-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border-radius: 12px;
+  font-family: var(--ct-display);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.ct-btn:hover { opacity: 0.88; transform: scale(0.985); }
+
+.ct-btn--primary {
+  background: var(--ct-blue);
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(59,130,246,0.32);
+}
+
+.ct-btn--ghost {
+  background: rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.8);
+  border: 1.5px solid rgba(255,255,255,0.14);
+}
+
+.ct-btn--full {
+  width: 100%;
+  justify-content: center;
+  padding: 15px 24px;
+  font-size: 15px;
+}
+
+.ct-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Success state ───────────────────────────────────────────── */
+.ct-form__success {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 48px 24px;
+  gap: 12px;
+}
+
+.ct-form__success--visible {
+  display: flex;
+  animation: success-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes success-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ct-success-icon {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: rgba(34,197,94,0.12);
+  border: 2px solid rgba(34,197,94,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--ct-green);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.ct-form__success h3 {
+  font-family: var(--ct-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ct-text);
+}
+
+.ct-form__success p {
+  font-size: 14px;
+  color: var(--ct-muted);
+  line-height: 1.6;
+}
