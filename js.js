@@ -16,6 +16,96 @@ const hiddenElements = document.querySelectorAll('.hidden');
 hiddenElements.forEach((el) => observer.observe(el));
 
 document.addEventListener("DOMContentLoaded", () => {
+  const chartCard = document.getElementById("irisChartCard");
+  let hasPlayed = false;
+
+  function animateCounter(el, target, duration = 1200, delay = 0) {
+    setTimeout(() => {
+      const startTime = performance.now();
+
+      function update(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+        const value = Math.round(target * eased);
+        el.textContent = value + "%";
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = target + "%";
+        }
+      }
+
+      requestAnimationFrame(update);
+    }, delay);
+  }
+
+  function animateBars(selector, delayBase = 0, duration = 1200, stagger = 180, skipFutureSpecial = false) {
+    const bars = document.querySelectorAll(selector);
+
+    bars.forEach((bar, index) => {
+      const target = parseFloat(bar.dataset.target || 0);
+
+      if (skipFutureSpecial && bar.classList.contains("js-bar-future")) {
+        return;
+      }
+
+      setTimeout(() => {
+        bar.style.height = target + "%";
+      }, delayBase + index * stagger);
+    });
+  }
+
+  function resetBars() {
+    document.querySelectorAll(".js-bar, .js-bar-right").forEach(bar => {
+      bar.style.height = "0%";
+    });
+
+    document.querySelectorAll(".js-count, .js-count-right").forEach(el => {
+      el.textContent = "0%";
+    });
+
+    chartCard.classList.remove("is-animating");
+  }
+
+  function playChartAnimation() {
+    if (hasPlayed) return;
+    hasPlayed = true;
+
+    chartCard.classList.add("is-animating");
+
+    // Left side: reality today
+    animateBars(".js-bar", 120, 1000, 160);
+    document.querySelectorAll(".js-count").forEach((el, index) => {
+      animateCounter(el, parseInt(el.dataset.target, 10), 1000, 120 + index * 160);
+    });
+
+    // Right side: target with IRIS
+    animateBars(".js-bar-right", 1450, 1100, 180, true);
+    document.querySelectorAll(".js-count-right").forEach((el, index) => {
+      const target = parseInt(el.dataset.target, 10);
+
+      // future gets slightly later timing for extra emphasis
+      const extraDelay = index === 2 ? 2050 : 1450 + index * 180;
+      animateCounter(el, target, 1100, extraDelay);
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        playChartAnimation();
+      }
+    });
+  }, {
+    threshold: 0.35
+  });
+
+  resetBars();
+  observer.observe(chartCard);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
   const art = document.querySelector(".ft-art--boxes");
   if (!art) return;
 
