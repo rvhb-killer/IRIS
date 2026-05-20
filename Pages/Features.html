@@ -447,72 +447,177 @@
 	     </section>
 		
 		<!-- ══ 6. DE 10% — DAY AFTER TOMORROW ════════════════════════ -->
-		 <div id="tenpercent" class="ft-block ft-block--light">
-    <div class="ft-container">
- 
-      <div class="ft-tenpct__header" data-reveal>
-        <p class="ft-kicker ft-kicker--dark">04 — De 10%</p>
-        <h2>Investeer vandaag in<br /><span class="ft-blue-text">the day after tomorrow.</span></h2>
-        <p class="ft-tenpct__intro">
-          Research shows that organizations spend on average <strong>93% of their resources</strong>
-		  managing today — and hardly anything on the future beyond tomorrow.
-		  IRIS helps restore that balance.
-        </p>
-      </div>
-      </div>
-		<section class="chart-wrapper">
-		<div class="chart-header">
-			<h1>Day After Tomorrow</h1>
-			<button class="btn-primary" id="irisToggle">
-			Zonder IRIS
-			</button>
-		</div>
-		<section class="chart" id="chart">
-			<div class="chart-inner">
-				<div class="y-label">
-					Time<br />
-					Attention<br />
-					Budget<br />
-					Talent
-				</div>
-				<div class="axis-y"></div>
-				<div class="axis-origin"></div>
-				<div class="axis-x"></div>
-				<div class="x-label">Value creation</div>
-				<div class="bars">
-					<div class="bar-group today">
-						<div class="bar-label">Today</div>
-						<div class="bar-value">93%</div>
-						<div class="bar-box">
-							<div class="bar-fill today-fill"></div>
-						</div>
-						<div class="bar-bottom">70%</div>
-					</div>
-					<div class="bar-group tomorrow">
-						<div class="bar-label">Tomorrow</div>
-						<div class="bar-value">7%</div>
-						<div class="bar-box">
-							<div class="bar-fill tomorrow-fill"></div>
-						</div>
-						<div class="bar-bottom">20%</div>
-					</div>
-					<div class="bar-group future">
-						<div class="bar-label">Day After<br />Tomorrow</div>
-						<div class="bar-value" id="futureValue">0%</div>
-						<div class="bar-box">
-							<div class="bar-fill future-fill"></div>
-						</div>
-						<div class="bar-bottom">10%</div>
-					</div>
-				</div>
-				<div class="iris-badge">
-					  IRIS activates the missing 10%
-				</div>
-			</div>
-		</section>
-		<div class="status" id="statusText">
-			Status: <span>  Without IRIS</span> the “Day After Tomorrow” space remains unused.
-		</div>
+		<section id="tenpercent" class="iris-allocation-section">
+		  <div class="iris-allocation-shell">
+
+		    <div class="iris-allocation-top">
+		      <div>
+		        <p class="iris-eyebrow">RESOURCE ALLOCATION</p>
+		        <h2>Van operationele focus naar toekomstwaarde</h2>
+		        <p class="iris-intro">
+		          IRIS herverdeelt capaciteit automatisch naar strategische thema’s
+		          en creëert ruimte voor duurzame waardecreatie.
+		        </p>
+		      </div>
+
+		      <div class="iris-auto-pill">
+		        <span class="iris-dot"></span>
+		        IRIS activeert automatisch
+		      </div>
+		    </div>
+
+		    <div class="iris-chart-card" id="irisChartCard">
+		      <div class="iris-chart-grid-bg"></div>
+
+		      <div class="iris-chart-layout">
+
+		        <!-- LEFT AXIS -->
+		        <div class="iris-axis-col">
+		          <div class="iris-axis-label">% van capaciteit</div>
+		          <div class="iris-axis">
+		            <span>100%</span>
+		            <span>75%</span>
+		            <span>50%</span>
+		            <span>25%</span>
+		            <span>0%</span>
+		          </div>
+		        </div>
+
+		        <!-- LEFT CHART -->
+		        <div class="iris-chart-half">
+		          <div class="iris-half-title iris-half-title--muted">REALITEIT VANDAAG</div>
+
+		          <div class="iris-bars">
+		            <div class="iris-bar-group">
+		              <div class="iris-bar-value js-count" data-target="93">0%</div>
+		              <div class="iris-bar-area">
+		                <div class="iris-bar-fill iris-bar-fill--muted js-bar" data-target="93"></div>
+		              </div>
+		              <div class="iris-bar-label">Today</div>
+		            </div>
+
+		            <div class="iris-bar-group">
+		              <div class="iris-bar-value js-count" data-target="7">0%</div>
+		              <div class="iris-bar-area">
+		                <div class="iris-bar-fill iris-bar-fill--muted js-bar" data-target="7"></div>
+		              </div>
+		              <div class="iris-bar-label">Tomorrow</div>
+		            </div>
+
+		            <div class="iris-bar-group">
+		              <div class="iris-bar-value js-count" data-target="0">0%</div>
+		              <div class="iris-bar-area">
+		                <div class="iris-bar-fill iris-bar-fill--muted js-bar" data-target="0"></div>
+		              </div>
+		              <div class="iris-bar-label">Day After<br>Tomorrow</div>
+		            </div>
+		          </div>
+		        </div>
+
+		        <!-- CENTER TRANSITION -->
+		        <div class="iris-chart-center">
+		          <div class="iris-center-line"></div>
+		          <div class="iris-transition-badge">
+		            <svg viewBox="0 0 24 24" aria-hidden="true">
+		              <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+		            </svg>
+		          </div>
+		        </div>
+
+		        <!-- RIGHT CHART -->
+		        <div class="iris-chart-half">
+		          <div class="iris-half-title iris-half-title--blue">MET IRIS-DOELBEELD</div>
+
+		          <div class="iris-bars">
+		            <div class="iris-bar-group">
+		              <div class="iris-bar-value iris-bar-value--blue js-count-right" data-target="70">0%</div>
+		              <div class="iris-bar-area">
+		                <div class="iris-bar-fill iris-bar-fill--blue js-bar-right" data-target="70"></div>
+		              </div>
+		              <div class="iris-bar-label">Today</div>
+		            </div>
+
+		            <div class="iris-bar-group">
+		              <div class="iris-bar-value iris-bar-value--blue js-count-right" data-target="20">0%</div>
+		              <div class="iris-bar-area">
+		                <div class="iris-bar-fill iris-bar-fill--blue js-bar-right" data-target="20"></div>
+		              </div>
+		              <div class="iris-bar-label">Tomorrow</div>
+		            </div>
+
+		            <div class="iris-bar-group iris-bar-group--highlight">
+		              <div class="iris-bar-value iris-bar-value--blue js-count-right" data-target="10">0%</div>
+		              <div class="iris-bar-area">
+		                <div class="iris-bar-fill iris-bar-fill--blue iris-bar-fill--glow js-bar-right js-bar-future" data-target="10"></div>
+		                <div class="iris-halo"></div>
+		              </div>
+		              <div class="iris-bar-label">Day After<br>Tomorrow</div>
+		            </div>
+		          </div>
+
+		          <svg class="iris-chart-arrow" viewBox="0 0 320 160" preserveAspectRatio="none" aria-hidden="true">
+		            <defs>
+		              <linearGradient id="irisArrowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+		                <stop offset="0%" stop-color="#9ec5ff" stop-opacity="0.15"/>
+		                <stop offset="50%" stop-color="#4f8fff" stop-opacity="0.95"/>
+		                <stop offset="100%" stop-color="#2563eb" stop-opacity="0.95"/>
+		              </linearGradient>
+		            </defs>
+		            <path class="iris-chart-arrow-path" d="M10 40 C120 10, 220 10, 290 110" />
+		            <polygon class="iris-chart-arrow-head" points="284,104 304,114 289,126"></polygon>
+		          </svg>
+		        </div>
+		      </div>
+
+		      <!-- BOTTOM INFO -->
+		      <div class="iris-chart-footer">
+		        <div class="iris-legend">
+		          <div class="iris-legend-item">
+		            <span class="iris-legend-dot iris-legend-dot--muted"></span>
+		            <span>Realiteit vandaag: <strong>93 / 7 / 0</strong></span>
+		          </div>
+		          <div class="iris-legend-divider"></div>
+		          <div class="iris-legend-item">
+		            <span class="iris-legend-dot iris-legend-dot--blue"></span>
+		            <span>Met IRIS-doelbeeld: <strong>70 / 20 / 10</strong></span>
+		          </div>
+		        </div>
+
+		        <div class="iris-message-pill">
+		          <span>✦</span>
+		          <span>IRIS vult het ontbrekende 10% in en maakt ruimte voor toekomstwaarde.</span>
+		        </div>
+		      </div>
+		    </div>
+
+		    <!-- BENEFITS -->
+		    <div class="iris-benefits">
+		      <div class="iris-benefit">
+		        <div class="iris-benefit-icon">↗</div>
+		        <div>
+		          <h4>Betere balans</h4>
+		          <p>Minder operationele druk, meer strategische impact.</p>
+		        </div>
+		      </div>
+
+		      <div class="iris-benefit">
+		        <div class="iris-benefit-icon">◎</div>
+		        <div>
+		          <h4>Gerichte groei</h4>
+		          <p>Investeren in wat morgen waarde creëert.</p>
+		        </div>
+		      </div>
+
+		      <div class="iris-benefit">
+		        <div class="iris-benefit-icon">✦</div>
+		        <div>
+		          <h4>Automatisch & continu</h4>
+		          <p>IRIS detecteert, verdeelt en optimaliseert.</p>
+		        </div>
+		      </div>
+		    </div>
+
+		  </div>
 		</section>
 
 
