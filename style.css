@@ -3280,8 +3280,6 @@ from {
    Gebruik samen met styles/main.css + styles/scroll-effects.css
    ═══════════════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=DM+Sans:wght@400;500&display=swap');
-
 /* ─── Tokens ─────────────────────────────────────────────────── */
 :root {
   --ct-bg:          #f0f4f9;
