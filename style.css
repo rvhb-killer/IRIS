@@ -1759,7 +1759,6 @@ from {
   aspect-ratio: 1 / 0.85;
   border-radius: 24px;
   position: relative;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
