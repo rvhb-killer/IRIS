@@ -2,7 +2,7 @@
   Stijlen voor de IRIS‑remake.  
   De pagina gebruikt CSS‑variabelen voor kleuren en eenvoudige
   lay‑outklassen zodat je de look gemakkelijk kunt aanpassen.  
-*/ 
+*/
 
 /* Kleurenpalet */
 :root {
@@ -609,7 +609,7 @@ a:hover {
   --ab-bg:           #f0f4f9;
   --ab-dark:         #0f1623;
   --ab-dark-2:       #141e2e;
-  --ab-blue:         #3b82f6
+  --ab-blue:         #3b82f6;
   --ab-blue-dim:     rgba(59,130,246,0.12);
   --ab-text:         #0f1623;
   --ab-muted:        #6b7280;
@@ -653,6 +653,7 @@ a:hover {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: var(--ab-blue);
   margin-bottom: 16px;
 }
 
@@ -665,17 +666,18 @@ a:hover {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: var(--ab-blue);
   margin-bottom: 20px;
 }
 
-.ab-kicker--light {  ; }
+.ab-kicker--light { color: rgba(255,255,255,0.5); }
 
 .ab-highlight {
-;
+  color: var(--ab-blue);
 }
 
 .ab-highlight--blue {
-  background:  var(--ab-blue);;
+  background: linear-gradient(90deg, #60a5fa, #3b82f6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -715,6 +717,9 @@ a:hover {
   );
 }
 
+.ab-hero .ab-eyebrow {
+  color: rgba(59,130,246,0.85);
+}
 
 .ab-hero__title {
   font-family: var(--ab-font-display);
@@ -870,7 +875,7 @@ a:hover {
 .ab-origin__grid {
   display: grid;
   grid-template-columns: 220px 1fr;
-  gap: 150px;
+  gap: 72px;
   align-items: center;
 }
 
@@ -1111,6 +1116,23 @@ a:hover {
    SCROLL REVEAL  (syncs met main.js)
    ══════════════════════════════════════════════════════════════ */
 
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(44px);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal="fade"]  { transform: translateY(0); }
+[data-reveal="left"]  { transform: translateX(-44px); }
+[data-reveal="right"] { transform: translateX(44px); }
+[data-reveal="scale"] { transform: scale(0.94); }
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
 
 
 /* ══════════════════════════════════════════════════════════════
@@ -1398,7 +1420,21 @@ a:hover {
 
 /* ─── Scroll reveal (syncs met main.js) ──────────────────────── */
 
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
 
+[data-reveal="left"]  { transform: translateX(-40px); }
+[data-reveal="right"] { transform: translateX(40px); }
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translate(0);
+}
 
 /* ─── Responsive ──────────────────────────────────────────────── */
 
@@ -1759,6 +1795,7 @@ from {
   aspect-ratio: 1 / 0.85;
   border-radius: 24px;
   position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2212,6 +2249,7 @@ from {
   flex-shrink: 0;
   box-shadow: 0 0 6px rgba(59,130,246,0.6);
 }
+
 /* ══════════════════════════════════════════════════════════════
    Report
    ══════════════════════════════════════════════════════════════ */
@@ -2349,13 +2387,13 @@ from {
 /* Podcast card */
 .ft-podcast-card {
   position: absolute;
-  left: 40%;
-  top: 30%;
-  width: 60%;
+  left: 235px;
+  top: 112px;
+  width: 255px;
   display: flex;
   align-items: center;
-  gap: 9%;
-  padding: 3.5% 4%;
+  gap: 14px;
+  padding: 16px 18px;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.88);
   border: 1px solid rgba(226, 232, 240, 0.95);
@@ -2366,7 +2404,7 @@ from {
 }
 
 .ft-podcast-icon {
-  width: 17.5%;
+  width: 42px;
   height: 42px;
   display: grid;
   place-items: center;
@@ -2461,9 +2499,9 @@ from {
 /* Mail badge */
 .ft-mail-badge {
   position: absolute;
-  left: 65%;
-  top: 50%;
-  width: 50%;
+  left: 405px;
+  top: 205px;
+  width: 230px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -2478,7 +2516,7 @@ from {
 }
 
 .ft-mail-icon {
-  width: 17.5%;
+  width: 38px;
   height: 38px;
   display: grid;
   place-items: center;
@@ -2561,7 +2599,6 @@ from {
     animation: none;
   }
 }
-
 /* ══════════════════════════════════════════════════════════════
    INTEGRATIES
    ══════════════════════════════════════════════════════════════ */
@@ -2685,6 +2722,23 @@ from {
 /* ══════════════════════════════════════════════════════════════
    SCROLL REVEAL
    ══════════════════════════════════════════════════════════════ */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(44px);
+  transition: opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1);
+}
+
+[data-reveal="fade"]  { transform: translateY(0); }
+[data-reveal="left"]  { transform: translateX(-44px); }
+[data-reveal="right"] { transform: translateX(44px); }
+[data-reveal="scale"] { transform: scale(0.94); opacity: 0; }
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
 
 
 /* ══════════════════════════════════════════════════════════════
@@ -2951,10 +3005,9 @@ from {
   --line-dim:  rgba(59, 130, 246, 0.25);
   --text:      #e2e8f0;
   --text-muted:#64748b;
-  --iris:      rgba(59, 130, 246, 0.7);
-  --iris-dark: #eab308;
+  --iris:      #facc15;
   --border:    rgba(59, 130, 246, 0.2);
-  --glow:      rgba(59, 130, 246, 0.25);
+  --glow:      rgba(59, 130, 246, 0.12);
 }
 
 .chart-wrapper {
@@ -3204,7 +3257,7 @@ from {
 }
 
 .with-iris .future .bar-value {
-  color: linear-gradient(to right, rgb(12, 141, 233), ;
+  color: var(--iris-dark);
 }
 
 .bar-bottom {
@@ -3272,6 +3325,7 @@ from {
     left: 53.3%;
   }
 }
+
 /* ══════════════════════════════════════════════════════════════
    Contact
    ══════════════════════════════════════════════════════════════ */
@@ -3279,6 +3333,8 @@ from {
    IRIS – Contact page styles
    Gebruik samen met styles/main.css + styles/scroll-effects.css
    ═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=DM+Sans:wght@400;500&display=swap');
 
 /* ─── Tokens ─────────────────────────────────────────────────── */
 :root {
@@ -3476,7 +3532,7 @@ from {
   transition: color 0.2s;
 }
 
-a.ct-contact-item__value:hover { color: var(--ct-blue);}
+a.ct-contact-item__value:hover { color: var(--ct-blue); }
 
 /* Response badge */
 .ct-response-badge {
@@ -3914,7 +3970,20 @@ details[open] .ct-faq__q     { color: var(--ct-blue); }
 /* ══════════════════════════════════════════════════════════════
    SCROLL REVEAL
    ══════════════════════════════════════════════════════════════ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(44px);
+  transition: opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1);
+}
+[data-reveal="fade"]  { transform: translateY(0); }
+[data-reveal="left"]  { transform: translateX(-44px); }
+[data-reveal="right"] { transform: translateX(44px); }
+[data-reveal="scale"] { transform: scale(0.94); opacity: 0; }
 
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
 
 
 /* ══════════════════════════════════════════════════════════════
@@ -3941,7 +4010,7 @@ details[open] .ct-faq__q     { color: var(--ct-blue); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [hidden]         { opacity: 1; transform: none; transition: none; }
+  [data-reveal]         { opacity: 1; transform: none; transition: none; }
   .ct-response-dot      { animation: none; }
   .ct-form__success--visible { animation: none; }
   .ct-faq__a            { animation: none; }
@@ -3984,7 +4053,7 @@ details[open] .ct-faq__q     { color: var(--ct-blue); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [show] { opacity: 1; transform: none; transition: none; }
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
   .ft-scan-ring,
   .ft-signal,
   .ft-activity-item { animation: none; }
