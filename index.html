@@ -14,6 +14,244 @@
 		<link rel="icon" type="image/x-icon" href="images/favicon.ico">
 	</head>
 	<body>
+				<!-- INTRO VIDEO OVERLAY -->
+		<div id="introVideoOverlay" class="intro-video-overlay" aria-hidden="true">
+		  <video
+		    id="introVideo"
+		    class="intro-video"
+		    autoplay
+		    playsinline
+		    preload="auto"
+		  >
+		    <source src="images/intro-video.mp4" type="video/mp4" />
+		  </video>
+
+		  <div class="intro-video-controls">
+		    <button class="intro-video-audio" id="introVideoAudio" type="button">
+		      Enable sound
+		    </button>
+
+		    <button class="intro-video-skip" id="introVideoSkip" type="button">
+		      Skip intro
+		    </button>
+		  </div>
+		</div>
+
+		<style>
+		  .intro-video-overlay {
+		    position: fixed;
+		    inset: 0;
+		    z-index: 2147483647;
+		    display: none;
+		    background: #000;
+		    opacity: 1;
+		    transition: opacity 700ms ease;
+		  }
+
+		  .intro-video-overlay.is-active {
+		    display: block;
+		  }
+
+		  .intro-video-overlay.is-leaving {
+		    opacity: 0;
+		    pointer-events: none;
+		  }
+
+		  .intro-video {
+		    width: 100%;
+		    height: 100%;
+		    object-fit: cover;
+		    background: #000;
+		  }
+
+		  .intro-video-controls {
+		    position: absolute;
+		    right: 28px;
+		    bottom: 28px;
+		    z-index: 2;
+		    display: flex;
+		    gap: 12px;
+		  }
+
+		  .intro-video-audio,
+		  .intro-video-skip {
+		    padding: 12px 18px;
+		    border: 1px solid rgba(255,255,255,0.25);
+		    border-radius: 999px;
+		    background: rgba(0,0,0,0.48);
+		    color: #ffffff;
+		    font-size: 13px;
+		    font-weight: 700;
+		    cursor: pointer;
+		    backdrop-filter: blur(10px);
+		    transition:
+		      background 220ms ease,
+		      border-color 220ms ease,
+		      transform 220ms ease,
+		      opacity 220ms ease;
+		  }
+
+		  .intro-video-audio:hover,
+		  .intro-video-skip:hover {
+		    transform: translateY(-2px);
+		    background: rgba(15,23,42,0.72);
+		    border-color: rgba(255,255,255,0.42);
+		  }
+
+		  .intro-video-audio.is-hidden {
+		    display: none;
+		  }
+
+		  .intro-video-audio:disabled {
+		    opacity: 0.55;
+		    cursor: default;
+		    transform: none;
+		  }
+
+		  body.intro-video-lock {
+		    overflow: hidden;
+		  }
+
+		  @media (max-width: 640px) {
+		    .intro-video-controls {
+		      right: 18px;
+		      bottom: 18px;
+		      flex-direction: column;
+		      align-items: flex-end;
+		    }
+
+		    .intro-video-audio,
+		    .intro-video-skip {
+		      padding: 10px 14px;
+		      font-size: 12px;
+		    }
+		  }
+		</style>
+
+		<script>
+		  (function () {
+		    const overlay = document.getElementById("introVideoOverlay");
+		    const video = document.getElementById("introVideo");
+		    const skipButton = document.getElementById("introVideoSkip");
+		    const audioButton = document.getElementById("introVideoAudio");
+
+		    const storageKey = "irisIntroVideoSeen";
+		    const introDuration = 10000;
+
+		    /*
+		      TESTMODUS:
+		      true  = intro verschijnt bij elke refresh
+		      false = intro verschijnt enkel bij eerste bezoek
+		    */
+		    const resetIntroForTesting = false;
+
+		    if (resetIntroForTesting) {
+		      localStorage.removeItem(storageKey);
+		    }
+
+		    if (!overlay || !video) return;
+
+		    const hasSeenIntro = localStorage.getItem(storageKey) === "true";
+
+		    if (hasSeenIntro) {
+		      overlay.remove();
+		      document.body.classList.remove("intro-video-lock");
+		      return;
+		    }
+
+		    let closed = false;
+		    let closeTimer = null;
+
+		    function closeIntro() {
+		      if (closed) return;
+		      closed = true;
+
+		      localStorage.setItem(storageKey, "true");
+		      overlay.classList.add("is-leaving");
+		      document.body.classList.remove("intro-video-lock");
+
+		      window.clearTimeout(closeTimer);
+
+		      window.setTimeout(function () {
+		        video.pause();
+		        overlay.remove();
+		      }, 750);
+		    }
+
+		    function startCloseTimer() {
+		      window.clearTimeout(closeTimer);
+		      closeTimer = window.setTimeout(closeIntro, introDuration);
+		    }
+
+		    document.body.classList.add("intro-video-lock");
+		    overlay.classList.add("is-active");
+		    overlay.setAttribute("aria-hidden", "false");
+
+		    /*
+		      Standaard proberen met geluid.
+		      Let op: veel browsers blokkeren dit zonder user interaction.
+		    */
+		    video.muted = false;
+		    video.volume = 1;
+
+		    const playPromise = video.play();
+
+		    if (playPromise && typeof playPromise.catch === "function") {
+		      playPromise
+		        .then(function () {
+		          if (audioButton) {
+		            audioButton.classList.add("is-hidden");
+		          }
+
+		          startCloseTimer();
+		        })
+		        .catch(function () {
+		          /*
+		            Fallback: autoplay met geluid werd geblokkeerd.
+		            De video start dan muted. De knop blijft zichtbaar.
+		          */
+		          video.muted = true;
+
+		          video.play()
+		            .then(startCloseTimer)
+		            .catch(startCloseTimer);
+
+		          if (audioButton) {
+		            audioButton.textContent = "Enable sound";
+		          }
+		        });
+		    } else {
+		      startCloseTimer();
+		    }
+
+		    video.addEventListener("ended", closeIntro);
+		    video.addEventListener("error", closeIntro);
+
+		    if (skipButton) {
+		      skipButton.addEventListener("click", closeIntro);
+		    }
+
+		    if (audioButton) {
+		      audioButton.addEventListener("click", function () {
+		        video.muted = false;
+		        video.volume = 1;
+
+		        video.play()
+		          .then(function () {
+		            audioButton.textContent = "Sound enabled";
+		            audioButton.disabled = true;
+
+		            window.setTimeout(function () {
+		              audioButton.classList.add("is-hidden");
+		            }, 700);
+		          })
+		          .catch(function () {
+		            audioButton.textContent = "Sound blocked";
+		          });
+		      });
+		    }
+		  })();
+		</script>
 		<header class="site-header">
 			<div class="container nav-container">
 				<div class="logo"><a class="home-button" href="index.html">IRIS</a></div>
