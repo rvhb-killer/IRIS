@@ -3404,7 +3404,7 @@ from {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: clamp(80px, 12vw, 140px) 0 clamp(72px, 9vw, 108px);
+  padding: 10vw;
   background: var(--ct-dark);
 }
 
