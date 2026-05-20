@@ -3089,54 +3089,98 @@ from {
 .ft-fly.is-flying {
   animation: ft-fly-to-box var(--dur, 1.8s) cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
+/* ═══════════════════════════════════════
+   3 Boxes model — mobile responsive fix
+   Plaats dit helemaal onderaan je CSS
+   ═══════════════════════════════════════ */
 
-@keyframes ft-fly-to-box {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0) scale(0.45) rotate(0deg);
-  }
-  10% {
-    opacity: 1;
-  }
-  78% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(var(--tx), var(--ty)) scale(0.95) rotate(180deg);
-  }
-}
-
-/* subtiele trail */
-.ft-fly.is-flying::before {
-  content: "";
-  position: absolute;
-  inset: -0.12rem;
-  border-radius: inherit;
-  background: currentColor;
-  filter: blur(0.35rem);
-  opacity: 0.4;
-  z-index: -1;
-}
-
-/* Mobiel */
 @media (max-width: 52rem) {
-  .ft-art--boxes {
-    min-height: auto;
+  /* Section zelf */
+  #threeboxes {
+    overflow: hidden;
   }
 
+  #threeboxes .ft-container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  #threeboxes .ft-block__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  #threeboxes .ft-block__content {
+    max-width: 100%;
+  }
+
+  #threeboxes .ft-block__content h2 {
+    max-width: 100%;
+    font-size: clamp(2rem, 10vw, 3.2rem);
+    line-height: 1.05;
+  }
+
+  #threeboxes .ft-block__content p {
+    max-width: 100%;
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  /* Visual wrapper */
+  .ft-art--boxes {
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+    padding: 0;
+    overflow: visible;
+  }
+
+  /* Vliegende signalen op mobiel verbergen.
+     Ze veroorzaken vaak overlap en layout-chaos. */
+  .ft-fly {
+    display: none;
+  }
+
+  /* Dozen onder elkaar */
   .ft-boxes-row {
     position: relative;
+    width: 100%;
+    display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
+    transform: none;
   }
 
+  /* Elke box als compacte card */
   .ft-box {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    min-height: auto;
     aspect-ratio: auto;
-    min-height: 12rem;
+    padding: 1.15rem;
+    border-radius: 1rem;
+  }
+
+  .ft-box__title {
+    font-size: 1rem;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+  }
+
+  .ft-box__body {
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+
+  .ft-box__tag,
+  .ft-box__label {
+    font-size: 0.72rem;
   }
 }
-
 /* ═══════════════════════════════════════
   Chart
    ═══════════════════════════════════════ */
