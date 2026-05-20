@@ -2349,13 +2349,13 @@ from {
 /* Podcast card */
 .ft-podcast-card {
   position: absolute;
-  left: 235px;
-  top: 112px;
-  width: 255px;
+  left: 40%;
+  top: 30%;
+  width: 60%;
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 16px 18px;
+  gap: 9%;
+  padding: 3.5% 4%;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.88);
   border: 1px solid rgba(226, 232, 240, 0.95);
@@ -2366,7 +2366,7 @@ from {
 }
 
 .ft-podcast-icon {
-  width: 42px;
+  width: 17.5%;
   height: 42px;
   display: grid;
   place-items: center;
@@ -2461,9 +2461,9 @@ from {
 /* Mail badge */
 .ft-mail-badge {
   position: absolute;
-  left: 405px;
-  top: 205px;
-  width: 230px;
+  left: 65%;
+  top: 50%;
+  width: 50%;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -2478,7 +2478,7 @@ from {
 }
 
 .ft-mail-icon {
-  width: 38px;
+  width: 17.5%;
   height: 38px;
   display: grid;
   place-items: center;
