@@ -3207,6 +3207,13 @@ from {
   color: #24324a;
 }
 
+.iris-bar-label2 {
+  font-size: 18px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #24324a;
+}
+
 .iris-chart-center {
   position: relative;
   height: 360px;
